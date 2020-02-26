@@ -10,7 +10,6 @@ class Showhotel extends Component {
                 {name.map((item) =>
                     <Item style={{margin:'3%'}} key={item.id} >
                         <Item.Image src={item.img} />
-
                         <Item.Content>
                             <Item.Header as='a'>{item.Header}</Item.Header>
                             <Item.Meta>

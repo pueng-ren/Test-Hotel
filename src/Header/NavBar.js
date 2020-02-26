@@ -27,11 +27,11 @@ class NavBar extends Component {
                         <Menu.Item
                             name='MY BOOKING'
                             as={NavLink}
-                            to="/Showhotel"
+                            to="/Booking"
                             active={activeItem === 'MY BOOKING'}
                             onClick={this.handleItemClick}
                         />
-
+                        
                         <Menu.Menu position='right'>
                             <Menu.Item
                                 name='LOGIN'

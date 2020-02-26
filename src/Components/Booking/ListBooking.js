@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import {  Header, Table, Rating,Button } from 'semantic-ui-react'
+import { Header, Table, Rating, Button } from 'semantic-ui-react'
 
 
-class Room extends Component {
-  
+class ListBooking extends Component {
+
     render() {
         return (
             <React.Fragment>
@@ -14,7 +14,7 @@ class Room extends Component {
                             A
                         </Header>
                     </Table.Cell>
-                    <Table.Cell singleLine>Power Output Power Output</Table.Cell>
+                    <Table.Cell singleLine>Output</Table.Cell>
                     <Table.Cell>
                         <Rating icon='star' defaultRating={3} maxRating={3} />
                     </Table.Cell>
@@ -23,12 +23,18 @@ class Room extends Component {
                         <a href='#'>18 studies</a>
                     </Table.Cell>
                     <Table.Cell>
-                    <Button/>
-                        </Table.Cell>
+
+                    </Table.Cell>
+                    <Table.Cell>
+
+                    </Table.Cell>
+                    <Table.Cell>
+
+                    </Table.Cell>
                 </Table.Row>
             </React.Fragment>
         )
     }
 }
 
-export default Room
+export default ListBooking
