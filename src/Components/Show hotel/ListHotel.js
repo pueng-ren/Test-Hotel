@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Icon, Image, Item, Label, Container } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 class Showhotel extends Component {
 
     render() {
@@ -7,7 +8,7 @@ class Showhotel extends Component {
         return (
             <React.Fragment>
                 {name.map((item) =>
-                    <Item>
+                    <Item style={{margin:'3%'}} key={item.id} >
                         <Item.Image src={item.img} />
 
                         <Item.Content>
@@ -19,8 +20,8 @@ class Showhotel extends Component {
                             <Item.Extra>
                                 <Label>{item.status}</Label>
                                 <Label icon='globe' content='Additional Languages' />
-                                <Button primary floated='right'>
-                                    Buy tickets
+                                <Button primary floated='right' to='/DetaiHotel' as={NavLink}>
+                                    More Info
                                 <Icon name='right chevron' />
                                 </Button>
                             </Item.Extra>
