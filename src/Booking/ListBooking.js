@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Header, Table, Rating, Button } from 'semantic-ui-react'
+import { Header, Table, Rating } from 'semantic-ui-react'
 
 
 class ListBooking extends Component {
@@ -20,7 +20,6 @@ class ListBooking extends Component {
                     </Table.Cell>
                     <Table.Cell textAlign='right'>
                         80% <br />
-                        <a href='#'>18 studies</a>
                     </Table.Cell>
                     <Table.Cell>
 

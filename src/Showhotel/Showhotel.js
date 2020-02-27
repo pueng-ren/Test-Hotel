@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Button, Icon, Image, Item, Label, Container } from 'semantic-ui-react'
+import { Item, Container } from 'semantic-ui-react'
 import ListHotel from './ListHotel'
-import Head from '../../Header/Head'
+import Head from '../Header/Head'
 import axios from 'axios'
 
-const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
 
 class Showhotel extends Component {
 
@@ -12,7 +11,7 @@ class Showhotel extends Component {
         data : []
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
         axios.get(`https://3c2f2418-c7f1-4d12-b37d-00442107ebcf.mock.pstmn.io/hotel`)
           .then(res => {

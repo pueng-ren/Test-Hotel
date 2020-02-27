@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Menu, Modal, Image, Header, Button } from 'semantic-ui-react'
+import { Menu} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
-import Login from './Login'
+import Login from '../Login/Login'
 class NavBar extends Component {
     state = { activeItem: 'home', open: false }
 
