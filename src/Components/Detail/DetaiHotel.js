@@ -12,8 +12,40 @@ class DetailHotel extends Component {
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
     render() {
+        const detail=
+            {
+                "id" : "1",
+                "name_hotel" : "Hotel The Serras",
+                "detail_hotel" : "This luxury boutique hotel comprises 28 trendy and very spacious rooms and suites, a Michelin star Chef Restaurant and a chill out rooftop terrace. This elegant 5-star boutique hotel overlooking the new luxury Port Vell alongside the Mediterranean Sea, offers a unique hideaway with a modern understated decor. Ideal for your weekend breaks, business trips and luxury holidays in the heart of Barcelona. It boasts a cool, trendy atmosphere, world class amenities and dedicated personal service for a truly memorable hotel experience in the first studio of Pablo Picasso on vibrant Barrio Gotico. Restaurant Informal Our Michelin Star Chef invites you to experience his Catalan specialties in a delicious selection of Mediterranean tapas, prepared from fresh seasonal ingredients sourced from our local market. Rooftop Terrace Offering breathtaking views of the Mediterranean Sea and the new Marina of Port Vell, our stylish rooftop terrace comes beautifully appointed with a superb infinity pool and comfortable lounge area.",
+                "address" : "Passeig de Colom, 9, 08002 Barcelona Spain",
+                "contact" : "00 34 931 69 18 68",
+                "websize" : "https://www.tripadvisor.com/Hotel_Review-g187497-d7142609-Reviews-Hotel_The_Serras-Barcelona_Catalonia.html",
+                "location":{
+                    "latiture":"1000",
+                    "lontiture":"10",
+                },
+                "Room" : [
+                    {
+                        "id" : "1",
+                        "name" : "Connecting rooms",
+                        "property":{
+                            "(WiFi)":"1",
+                            "Fitness":"1",
+                            "Pool":"1",
+                            "Rooftop":"1",
+                            "Meeting":"1",
+                        },
+                        "sizeRoom" : "5",
+                        "available" : "5",
+                        "price" : "$20",
+                    }
+                ]
+
+            }
+        
         return (
             <React.Fragment>
+             
                 <Container className='body'>
                     <div style={{ marginTop: '2%' }}></div>
                     <h2 >ชื่อโรงแรม</h2>
@@ -44,11 +76,11 @@ class DetailHotel extends Component {
                                 <Table.HeaderCell style={{ width: '10%' }}>จำนวนผู้เข้าพัก</Table.HeaderCell>
                                 <Table.HeaderCell style={{ width: '20%' }}>ราคาวันนี้</Table.HeaderCell>
                                 <Table.HeaderCell></Table.HeaderCell>
-                            </Table.Row>
+                            </Table.Row >
                         </Table.Header>
 
                         <Table.Body>
-                            <Room />
+                            <Room room={detail.Room}/>
                         </Table.Body>
                     </Table>
                     </div>

@@ -2,36 +2,34 @@ import React, { Component } from 'react'
 import { Button, Icon, Image, Item, Label, Container } from 'semantic-ui-react'
 import ListHotel from './ListHotel'
 import Head from '../../Header/Head'
+import axios from 'axios'
+
 const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
 
 class Showhotel extends Component {
 
+    state ={
+        data : []
+    }
+
+    componentWillMount() {
+
+        axios.get(`https://3c2f2418-c7f1-4d12-b37d-00442107ebcf.mock.pstmn.io/hotel`)
+          .then(res => {
+            const data = res.data.data;
+            this.setState({data:data})
+          })
+      }
+
     render() {
-        const name = [
-            {
-                id:1,
-                img: 'https://react.semantic-ui.com/images/wireframe/image.png',
-                Header: '12 Years a Slave',
-                Header2: 'Union Square 14',
-                detail: 'The number of reported cases from the novel coronavirus (Covid-19) has risen to 80,150 across the world, resulting in 2,701 deaths. 27,595 people have recovered from the virus, the death rate is still hovering below 2%. ',
-                status: 'available'
-            },
-            {
-                id:2,
-                img: 'https://react.semantic-ui.com/images/wireframe/image.png',
-                Header: '12 Years a Slave',
-                Header2: 'Union Square 14',
-                detail: 'The number of reported cases from the novel coronavirus (Covid-19) has risen to 80,150 across the world, resulting in 2,701 deaths. 27,595 people have recovered from the virus, the death rate is still hovering below 2%. ',
-                status: 'un available'
-            }
-        ]
+        const {data}=this.state
         return (
             <React.Fragment>
                 <Head />
                 <Container>
                     <h1  style={{ margin: '5%' }} align='center'>ALL HOTELS</h1>
                     <Item.Group style={{padding:'5%'}} divided>
-                        <ListHotel name={name} />
+                        <ListHotel name={data} />
                     </Item.Group>
                 </Container>
             </React.Fragment>

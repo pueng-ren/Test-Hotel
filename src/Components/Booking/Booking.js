@@ -4,7 +4,9 @@ import { Container, Table } from 'semantic-ui-react'
 import ListBooking from './ListBooking'
 
 class Booking extends Component {
+    
     render(){
+       
         return(
             <React.Fragment>
             <Head />
