@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
-import { Menu} from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
 import Login from '../Login/Login'
+import NavLogin from './NavLogin'
+import NavLogout from './NavLogout'
+
 class NavBar extends Component {
     state = { activeItem: 'home', open: false }
 
     show = (dimmer) => () => this.setState({ dimmer, open: true })
     close = () => this.setState({ open: false })
-    handleItemClick = (e, { name }) => (name==='LOGIN') ? this.setState({ activeItem: name, open: true }) : this.setState({ activeItem: name}  )
+    handleItemClick = (e, { name }) => 
+        (name === 'LOGIN') ? this.setState({ activeItem: name, open: true }) : this.setState({ activeItem: name })
 
     render() {
         const { activeItem } = this.state
@@ -15,7 +19,7 @@ class NavBar extends Component {
         return (
 
             <React.Fragment >
-                <div style={{ padding: '0.5%', position: 'fixed', backgroundColor: '#F2F2F2', width: '100%' }}>
+                <div className='Nav'>
                     <Menu secondary   >
                         <Menu.Item
                             as={NavLink}
@@ -24,21 +28,8 @@ class NavBar extends Component {
                             active={activeItem === 'HOME'}
                             onClick={this.handleItemClick}
                         />
-                        <Menu.Item
-                            name='MY BOOKING'
-                            as={NavLink}
-                            to="/Booking"
-                            active={activeItem === 'MY BOOKING'}
-                            onClick={this.handleItemClick}
-                        />
-                        
-                        <Menu.Menu position='right'>
-                            <Menu.Item
-                                name='LOGIN'
-                                active={activeItem === 'LOGIN'}
-                                onClick={this.handleItemClick}
-                            />
-                        </Menu.Menu>
+                        <NavLogin handleItemClick={this.handleItemClick} value={activeItem} />
+                        <NavLogout handleItemClick={this.handleItemClick} value={activeItem} />
 
                         <Login setModal={this.state} close={this.close} />
                     </Menu>

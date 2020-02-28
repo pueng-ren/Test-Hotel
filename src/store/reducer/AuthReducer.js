@@ -1,4 +1,6 @@
-const HotelReducer =(state = [] ,action)=>{
+const initState ={}
+
+const AuthReducer =(state = initState ,action)=>{
     switch(action.type){
         case 'ADD_BOOKING':
         return state.concat([action.data])
@@ -7,4 +9,4 @@ const HotelReducer =(state = [] ,action)=>{
     }
 
 }
-export default HotelReducer
+export default AuthReducer

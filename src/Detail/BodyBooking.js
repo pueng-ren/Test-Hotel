@@ -2,9 +2,16 @@ import React, { Component } from 'react'
 import { Grid, Button } from 'semantic-ui-react'
 import { Form, Input } from 'semantic-ui-react-form-validator'
 import { connect } from 'react-redux'
+import {BookingActions} from '../store/action/BookingActions'
 
 
 class BodyBooking extends Component {
+    
+   
+    constructor(props){
+        super(props)
+        console.log(props)
+    }
     state = {
         IdRoom: '',
         Hotel_name: '',
@@ -61,12 +68,10 @@ class BodyBooking extends Component {
         }
 
 
-        this.props.dispatch({
-            type: 'ADD_BOOKING',
-            data
-        })
+        this.props.BookingActions({data })
 
         this.clearState()
+        // this.props.close()
     }
 
 
@@ -74,8 +79,6 @@ class BodyBooking extends Component {
 
     render() {
         const { Hotel_name, available, Loading } = this.state
-
-
         // if(Loading){
         return (
             <React.Fragment  >
@@ -162,6 +165,12 @@ class BodyBooking extends Component {
 
 }
 
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        BookingActions:(booking)=> dispatch(BookingActions(booking))
+    }
+}
 
 
-export default connect()(BodyBooking)
+
+export default connect(null,mapDispatchToProps)(BodyBooking)

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Route } from "react-router-dom";
+import { BrowserRouter,Route } from "react-router-dom";
 import Showhotel from './Showhotel/Showhotel'
 import DetaiHotel from './Detail/DetaiHotel'
 import Booking from './Booking/Booking'
@@ -16,7 +16,7 @@ class App extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <BrowserRouter>
         <div className="App">
           <NavBar />
           <switch>
@@ -25,11 +25,12 @@ class App extends Component {
             <Route exact path={"/Login"} component={Login} />
             <Route exact path={"/Register"} component={Register} />
             <Route exact path={"/Booking"} component={Booking} />
+            <Route exact path={"/BodyBooking/:id"} component={Booking} />
             <Route exact path={"/SimpleMap"} component={SimpleMap} />
 
           </switch>
         </div>
-      </React.Fragment>
+      </BrowserRouter>
     );
   }
 }

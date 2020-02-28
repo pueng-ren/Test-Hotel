@@ -12,3 +12,10 @@
 .marginT2{
     margin-top: 5%;
 }
+
+.Nav{
+    padding: 0.5%;
+    position: fixed;
+    background-Color: #F2F2F2;
+    width: 100%;
+}

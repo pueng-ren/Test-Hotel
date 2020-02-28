@@ -6,6 +6,11 @@ import { connect } from 'react-redux'
 
 class Booking extends Component {
 
+    constructor(props){
+        super(props)
+        console.log(props)
+    }
+
     render() {
        
     
@@ -48,7 +53,7 @@ class Booking extends Component {
 
 const mapStateToProps = state => {
     return {
-        comments: state
+        comments: state.booking.data
     }
 }
 

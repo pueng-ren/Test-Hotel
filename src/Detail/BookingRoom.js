@@ -28,7 +28,7 @@ class BookingRoom extends Component {
                     setModal={this.props.setModal} 
                     close={close} 
                     header="BOOKING"
-                    body={<BodyBooking  id_hotel={id_hotel} Hotel={Hotel}/>} close={close}
+                    body={<BodyBooking  id_hotel={id_hotel} Hotel={Hotel}  close={close}/>} close={close}
                     available={available}
                     />          
             </React.Fragment>

@@ -15,10 +15,11 @@ class ListBooking extends Component {
                 <Table.Row>
                     <Table.Cell>
                         <Header as='h2' textAlign='center'>
-                           {this.props.num}
+                           {/* {this.props.num} */}
                         </Header>
                     </Table.Cell>
-                    <Table.Cell singleLine>{booking.idBooking.toLocaleDateString()}</Table.Cell>
+                    <Table.Cell singleLine>{booking.idBooking}</Table.Cell>
+                    {/* .toLocaleDateString() */}
                     <Table.Cell>
                         {booking.Hotel_name}
                     </Table.Cell>

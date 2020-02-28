@@ -38,7 +38,8 @@ class DetailHotel extends Component {
 
     render() {
         const { data, Loading,latiture,lontiture } = this.state
-        
+        const d=new Date()
+        console.log(d)
 
         const room = () => {
             if (Loading) {
