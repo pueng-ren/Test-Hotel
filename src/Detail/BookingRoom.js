@@ -18,8 +18,8 @@ class BookingRoom extends Component {
     //   }
     
     render() {
-        let { open } = this.props.setModal
         const close = this.props.close
+        const {id_hotel,Hotel,available}= this.props
         // let {Username,Password}=this.state
         return (
             
@@ -28,7 +28,8 @@ class BookingRoom extends Component {
                     setModal={this.props.setModal} 
                     close={close} 
                     header="BOOKING"
-                    body={<BodyBooking/>} close={close}
+                    body={<BodyBooking  id_hotel={id_hotel} Hotel={Hotel}/>} close={close}
+                    available={available}
                     />          
             </React.Fragment>
         )

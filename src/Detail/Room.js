@@ -36,7 +36,7 @@ class Room extends Component {
                             
                         </Table.Cell>
                     </Table.Row>
-                    <BookingRoom setModal={this.state} close={this.close} key={item.id}/>
+                    <BookingRoom setModal={this.state} close={this.close} key={item.id} id_hotel={item.id} Hotel={item.name} available={item.available}/>
                 </React.Fragment>
                 )
             }

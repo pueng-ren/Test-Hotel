@@ -3,11 +3,12 @@ import './App.css';
 import { Route } from "react-router-dom";
 import Showhotel from './Showhotel/Showhotel'
 import DetaiHotel from './Detail/DetaiHotel'
-import Booking from './Components/Booking/Booking'
+import Booking from './Booking/Booking'
 import Login from './Login/Login'
 import Register from './Header/Register'
 import NavBar from './Header/NavBar'
 
+import SimpleMap from './Map/SimpleMap'
 
 class App extends Component {
 
@@ -24,6 +25,8 @@ class App extends Component {
             <Route exact path={"/Login"} component={Login} />
             <Route exact path={"/Register"} component={Register} />
             <Route exact path={"/Booking"} component={Booking} />
+            <Route exact path={"/SimpleMap"} component={SimpleMap} />
+
           </switch>
         </div>
       </React.Fragment>

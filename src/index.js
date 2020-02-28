@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import {createStore} from 'redux'
+import { BrowserRouter } from 'react-router-dom'
+import HotelReducer from './HotelReducer'
+import {Provider} from 'react-redux'
+
+const store=createStore(HotelReducer)
 
 
 // import bootstrap set
 
-import { BrowserRouter } from 'react-router-dom'
 
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
@@ -16,9 +21,11 @@ document.head.appendChild(styleLink);
 
 
 const AppWithRouter = () => (
+    <Provider store={store}>
     <BrowserRouter>
         <App/>
     </BrowserRouter>
+    </Provider>
 )
 
 ReactDOM.render(<AppWithRouter/>, document.getElementById('root'));

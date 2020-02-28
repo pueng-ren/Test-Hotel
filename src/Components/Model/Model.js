@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Modal, Button } from 'semantic-ui-react'
-import { Form, Input } from 'semantic-ui-react-form-validator'
-import { Link } from 'react-router-dom';
+import { Modal } from 'semantic-ui-react'
+
 
 
 class Model extends Component {

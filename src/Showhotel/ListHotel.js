@@ -7,9 +7,11 @@ class Showhotel extends Component {
         const name = this.props.name
         return (
             <React.Fragment>
+                {}
                 {name.map((item) =>
                     <Item style={{margin:'3%'}} key={item.id} >
-                        <Item.Image src={item.img} />
+                        
+                        <Item.Image src={item.image} />
                         <Item.Content>
                             <Item.Header as='a'>{item.Header}</Item.Header>
                             <Item.Meta>

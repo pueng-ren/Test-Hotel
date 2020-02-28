@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import { Form, Input } from 'semantic-ui-react-form-validator'
 import { Link } from 'react-router-dom';
 
