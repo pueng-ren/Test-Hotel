@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import Model from '../Components/Model/Model'
+import Model from '../Components/Model'
 import BodyBooking from './BodyBooking'
 class BookingRoom extends Component {
     // state={

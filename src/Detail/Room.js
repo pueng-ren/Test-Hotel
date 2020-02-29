@@ -1,9 +1,17 @@
 import React, { Component } from 'react'
 import { Table, Button } from 'semantic-ui-react'
 import Listproperty from './Listproperty'
-import { Model } from '../Components/Model/Model'
 import BookingRoom from './BookingRoom'
+import Login from '../Login/Login'
+
+import { connect } from 'react-redux'
+
 class Room extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+
     state = { open: false }
 
     show = (dimmer) => () => this.setState({ dimmer, open: true })
@@ -13,6 +21,8 @@ class Room extends Component {
 
     render() {
         const room = this.props.room
+        const {auth}=this.props
+       
         return (
         room.map((item) => {
             return (
@@ -36,12 +46,23 @@ class Room extends Component {
                             
                         </Table.Cell>
                     </Table.Row>
-                    <BookingRoom setModal={this.state} close={this.close} key={item.id} id_hotel={item.id} Hotel={item.name} available={item.available}/>
+                    {
+                        auth.uid? 
+                        <BookingRoom setModal={this.state} close={this.close} key={item.id} id_hotel={item.id} Hotel={item.name} available={item.available}/>
+                        :<Login setModal={this.state} close={this.close} key={item.id}/>
+                        
+                    }
+                   
                 </React.Fragment>
                 )
             }
         ))
     }
 }
+const mapStateToProps = state => ({
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
+});
 
-export default Room
+
+export default connect(mapStateToProps)(Room)

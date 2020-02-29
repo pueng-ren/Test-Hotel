@@ -3,24 +3,25 @@ import Head from '../Header/Head'
 import { Container, Table } from 'semantic-ui-react'
 import ListBooking from './ListBooking'
 import { connect } from 'react-redux'
+import {Redirect} from 'react-router-dom'
 
 class Booking extends Component {
 
     constructor(props){
         super(props)
-        console.log(props)
     }
 
     render() {
-       
-    
-
+       const {auth}=this.props
+        if(!auth.uid){
+          return <Redirect to='/home'/>
+        }
         return (
-            // console.log(comments)
+           
             <React.Fragment>
+
                 <Head />
                 <Container>
-                    {console.log(this.props.comments)}
                     <h1 style={{ margin: '5%' }} align='center'>MY BOOKING</h1>
                     <Table celled padded>
                         <Table.Header>
@@ -53,8 +54,8 @@ class Booking extends Component {
 
 const mapStateToProps = state => {
     return {
-        comments: state.booking
-        
+        comments: state.booking,
+        auth: state.firebase.auth,
     }
 }
 

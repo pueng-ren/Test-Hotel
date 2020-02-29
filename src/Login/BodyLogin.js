@@ -2,25 +2,42 @@ import React, { Component } from 'react'
 import { Button } from 'semantic-ui-react'
 import { Form, Input } from 'semantic-ui-react-form-validator'
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
+import MessageExampleError from '../Components/Message'
 
 
-class Login extends Component {
+class BodyLogin extends Component {
+    constructor(props) {
+        super(props)
+    }
 
 
 
 
     render() {
-        let {handleFormChange,handleSubmit,password,email,close} = this.props
+
+        const checkLogin = () => {
+            if (this.props.authError === 'Login fail') {
+                return (
+                    <MessageExampleError Header='warning' Body='warning login failed. please try again' />
+                )
+            }
+        }
+        const { handleFormChange, handleSubmit, password, email } = this.props
+        const onClose=()=>{
+            this.props.close()
+        }
 
         return (
             <React.Fragment  >
 
                 <Form style={{ padding: '2%' }}
-                onSubmit={handleSubmit}
+                    onSubmit={handleSubmit}
                 >
-                    {/* {console.log(Username+" "+Password)} */}
+                   {checkLogin()}
+
                     <Input
-                        type="text"
+                        type="email"
                         label="email"
                         name="email"
                         onChange={handleFormChange}
@@ -30,24 +47,30 @@ class Login extends Component {
                         placeholder='email'
                     />
                     <Input
-                        type="text"
+                        type="password"
                         label="password"
                         name="password"
                         onChange={handleFormChange}
                         value={password}
                         validators={['required']}
                         errorMessages={['this field is required']}
+                        
                         placeholder='password'
                     />
                     <Button type='submit'>Submit</Button>
-                    <p>Don't have account ? <Link to='/Register' onClick={close}>Create an account</Link></p>
+                   
                 </Form>
+                <p>Don't have account ? <Link to='./Register'  onClick={onClose.bind()}>Create an account</Link></p>
             </React.Fragment>
         )
     }
 
 }
 
+const mapStateToProps = state => ({
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
+});
 
 
-export default Login
+export default connect(mapStateToProps)(BodyLogin)

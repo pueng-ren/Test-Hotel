@@ -27,7 +27,6 @@ class DetailHotel extends Component {
 
                     const data = res.data.data;
                     this.setState({ data: data, Loading: true ,latiture : data.location.latiture,lontiture : data.location.lontiture})
-                    // console.log(data.location.s)
 
                 }
             })

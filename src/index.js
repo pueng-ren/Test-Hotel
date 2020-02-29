@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware, compose } from 'redux';
-import { BrowserRouter } from 'react-router-dom'
 import RootReducer from './store/reducer/RootReducer'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
@@ -25,14 +24,14 @@ const rrfConfig = {
 const store = createStore(RootReducer,
     composeEnhancers(
       applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-      reduxFirestore(firebase), // still need this line to get access to firestore via getFirestore function (in projectActions, for example)
+      reduxFirestore(firebase),
     ));
   
   const rrfProps = {
     firebase,
     config: rrfConfig,
     dispatch: store.dispatch,
-    createFirestoreInstance, // Create firestore instead of craete it in fbConfig.js
+    createFirestoreInstance, 
   };
 
 const styleLink = document.createElement("link");

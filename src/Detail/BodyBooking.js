@@ -51,7 +51,6 @@ class BodyBooking extends Component {
             available: ''
         }
         this.setState(state)
-        console.log(this.state)
     }
 
     handleSubmit = (e) => {
@@ -71,7 +70,7 @@ class BodyBooking extends Component {
         this.props.BookingActions({data })
 
         this.clearState()
-        // this.props.close()
+        this.props.close()
     }
 
 
@@ -149,7 +148,7 @@ class BodyBooking extends Component {
 
                         </Grid.Row>
                         <Grid.Row centered>
-                            <Button type='submit'>Submit</Button>
+                            <Button type='submit' >Submit</Button>
                         </Grid.Row>
 
 

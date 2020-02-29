@@ -20,4 +20,8 @@ var firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   // firebase.firestore(); // We don't need this anymore because we create firestore in index.js
   
-  export default firebase ;
+  const db = firebase.firestore();
+  export { db };
+  export default firebase;
+  
+  

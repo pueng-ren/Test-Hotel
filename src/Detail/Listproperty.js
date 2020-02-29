@@ -42,7 +42,6 @@ class Listproperty extends Component {
 
         return (
             <React.Fragment>
-                {/* {console.log(detail.Fitness)} */}
                 <Grid  >
                     <Grid.Row>
                         <ul>

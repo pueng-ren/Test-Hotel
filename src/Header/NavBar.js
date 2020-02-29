@@ -22,8 +22,6 @@ class NavBar extends Component {
         const { activeItem } = this.state
         const { auth, profile } = this.props;
         const links = auth.uid ?  <NavLogin profile={profile}  handleItemClick={this.handleItemClick} value={activeItem} />:<NavLogout handleItemClick={this.handleItemClick} value={activeItem}/> ;
-        // console.log(auth.uid?true:false)
-        console.log(this.props)
         return (
 
             <React.Fragment >
@@ -31,7 +29,7 @@ class NavBar extends Component {
                     <Menu secondary   >
                         <Menu.Item
                             as={NavLink}
-                            to="/Showhotel"
+                            to="/home"
                             name='HOME'
                             active={activeItem === 'HOME'}
                             onClick={this.handleItemClick}

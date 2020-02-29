@@ -7,7 +7,6 @@ class ListBooking extends Component {
     render() {
         const booking = this.props.item
        
-        // console.log(booking.idBooking.toDateString())
         return (
             <React.Fragment key={this.props.key}>
                

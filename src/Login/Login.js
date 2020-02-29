@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 
 import BodyLogin from './BodyLogin'
-import Model from '../Components/Model/Model'
+import Model from '../Components/Model'
 import { connect } from 'react-redux'
 import { SingIn } from '../store/action/AuthAction'
 import { firebaseConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { Button, Modal } from 'semantic-ui-react'
 
 class Login extends Component {
+
+    constructor(props){
+        super(props)
+    }
     state = {
         email: '',
         password: '',
@@ -21,16 +26,19 @@ class Login extends Component {
         });
 
     }
+  
+    clearState() {
+        const reset = {
+            email: '',
+            password: '',
+        }
+        this.setState(reset)
+
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        // const { Username, Password } = this.state
-
-        // const data = {
-        //     email: Username,
-        //     password: Password
-        // }
-        // console.log(data)
-
+     
         const { props, state } = this;
         const { firebase } = props;
         const credentials = { ...state };
@@ -39,25 +47,18 @@ class Login extends Component {
             firebase
         };
 
-        // console.log(authData)
-        this.props.SingIn(authData )
-
-        // this.clearState()
-        // this.props.close()
+        this.props.SingIn(authData)
     }
 
-    clearState() {
-        const reset = {
-            Username: '',
-            Password: '',
-        }
-        this.setState(reset)
-    }
 
 
     render() {
+      
+        const { auth, authError } = this.props;
         const close = this.props.close
         let { email, password } = this.state
+       
+        
         return (
 
             <React.Fragment  >
@@ -70,8 +71,10 @@ class Login extends Component {
                         handleSubmit={this.handleSubmit}
                         email={email}
                         password={password}
-                        close={close} />}
+                        close={close}
+                        />}
                 />
+               
             </React.Fragment>
         )
     }
