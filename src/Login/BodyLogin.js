@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Button } from 'semantic-ui-react'
 import { Form, Input } from 'semantic-ui-react-form-validator'
 import { Link } from 'react-router-dom';
@@ -6,26 +6,20 @@ import { connect } from 'react-redux'
 import MessageExampleError from '../Components/Message'
 
 
-class BodyLogin extends Component {
-    constructor(props) {
-        super(props)
-    }
+const BodyLogin=(props)=>{
 
-
-
-
-    render() {
+    
 
         const checkLogin = () => {
-            if (this.props.authError === 'Login fail') {
+            if (props.authError === 'Login fail') {
                 return (
                     <MessageExampleError Header='warning' Body='warning login failed. please try again' />
                 )
             }
         }
-        const { handleFormChange, handleSubmit, password, email } = this.props
+        const { handleFormChange, handleSubmit, password, email } = props
         const onClose=()=>{
-            this.props.close()
+            props.close()
         }
 
         return (
@@ -63,7 +57,7 @@ class BodyLogin extends Component {
                 <p>Don't have account ? <Link to='./Register'  onClick={onClose.bind()}>Create an account</Link></p>
             </React.Fragment>
         )
-    }
+    
 
 }
 

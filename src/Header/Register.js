@@ -6,6 +6,7 @@ import { SignUp } from '../store/action/AuthAction'
 import { firebaseConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import {Redirect} from 'react-router-dom'
+import MessageExampleError from '../Components/Message'
 
 class Register extends Component {
 
@@ -50,16 +51,24 @@ class Register extends Component {
             return <Redirect to='/home'/>
         }
 
-
+        const checkRegis = () => {
+            if (this.props.authError === 'SIGNUP_ERROR') {
+                return (
+                    <MessageExampleError Header='warning' Body='Please check your email' />
+                )
+            }
+        }
 
         return (
             <React.Fragment>
                 <Container className='body'>
                     <h1>Register</h1>
+
                     <Form
                         ref="form"
                         onSubmit={this.handeleSubmit}
                     >
+                         {checkRegis()}
                         <Input
                             type="email"
                             label="Email"
@@ -71,11 +80,12 @@ class Register extends Component {
                             placeholder='Email'
                         />
                         <Input
-                            type="text"
+                            type="password"
                             label="Password"
                             name="password"
                             onChange={this.handleFormChange}
                             value={this.state.password}
+                            minLength="8"
                             validators={['required']}
                             errorMessages={['this field is required']}
                             placeholder='Password'
@@ -87,6 +97,7 @@ class Register extends Component {
                             onChange={this.handleFormChange}
                             value={this.state.firstName}
                             validators={['required']}
+                            // pattern = "[A-Za-z]"
                             errorMessages={['this field is required']}
                             placeholder='First Name'
                         />
@@ -96,6 +107,7 @@ class Register extends Component {
                             name="lastName"
                             onChange={this.handleFormChange}
                             value={this.state.lastName}
+                            // pattern = "[A-Za-z]"
                             validators={['required']}
                             errorMessages={['this field is required']}
                             placeholder='Last Name'

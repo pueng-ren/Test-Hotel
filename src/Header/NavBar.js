@@ -22,6 +22,7 @@ class NavBar extends Component {
         const { activeItem } = this.state
         const { auth, profile } = this.props;
         const links = auth.uid ?  <NavLogin profile={profile}  handleItemClick={this.handleItemClick} value={activeItem} />:<NavLogout handleItemClick={this.handleItemClick} value={activeItem}/> ;
+        console.log(profile)
         return (
 
             <React.Fragment >

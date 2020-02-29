@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import { Button, Icon, Item, Label } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
+
 class Showhotel extends Component {
+
 
     render() {
         const name = this.props.name
+
+        const value =(id)=>{
+            return `/DetaiHotel/${id}`
+        }
+      
         return (
             <React.Fragment>
-                {}
+                
                 {name.map((item) =>
                     <Item style={{margin:'3%'}} key={item.id} >
                         
@@ -20,8 +28,7 @@ class Showhotel extends Component {
                             <Item.Description>{item.detail}</Item.Description>
                             <Item.Extra>
                                 <Label>{item.status}</Label>
-                                <Label icon='globe' content='Additional Languages' />
-                                <Button primary floated='right' to='/DetaiHotel' as={NavLink}>
+                                <Button primary floated='right' to={value(item.id)} as={NavLink}>
                                     More Info
                                 <Icon name='right chevron' />
                                 </Button>

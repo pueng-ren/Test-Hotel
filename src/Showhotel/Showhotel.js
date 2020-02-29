@@ -7,17 +7,24 @@ import axios from 'axios'
 
 class Showhotel extends Component {
 
+    _isMounted = false;
     state ={
         data : []
     }
 
     componentDidMount() {
-
-        axios.get(`https://3c2f2418-c7f1-4d12-b37d-00442107ebcf.mock.pstmn.io/hotel`)
+        this._isMounted = true;
+        axios.get(`https://cb5e1f83-a66c-46ba-b49b-5c52f546772a.mock.pstmn.io/hotel`)
           .then(res => {
+            if (this._isMounted) {
             const data = res.data.data;
             this.setState({data:data})
+            }
           })
+      }
+
+      componentWillUnmount() {
+        this._isMounted = false;
       }
 
     render() {

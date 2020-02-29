@@ -2,32 +2,33 @@ import React, { Component } from 'react'
 import { Grid, Button } from 'semantic-ui-react'
 import { Form, Input } from 'semantic-ui-react-form-validator'
 import { connect } from 'react-redux'
-import {BookingActions} from '../store/action/BookingActions'
-
+import { BookingActions } from '../store/action/BookingActions'
+import { firebaseConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import DateDiff from 'date-diff'
 
 class BodyBooking extends Component {
-    
-   
-    constructor(props){
+
+
+    constructor(props) {
         super(props)
         console.log(props)
     }
+
     state = {
         IdRoom: '',
-        Hotel_name: '',
+        Room_name: '',
         DateStart: '',
         DateEnd: '',
         number: '',
         Loading: false,
-        available: ''
-
-
-
+        available: '',
+        per_price: '',
     }
 
     componentDidMount() {
-        const { id_hotel, Hotel, available } = this.props
-        this.setState({ IdRoom: id_hotel, Hotel_name: Hotel, available: available })
+        const { id_hotel, Hotel, available, price } = this.props
+        this.setState({ IdRoom: id_hotel, Room_name: Hotel, available: available, per_price: price })
 
     }
 
@@ -43,46 +44,62 @@ class BodyBooking extends Component {
     clearState() {
         const state = {
             IdRoom: '',
-            Hotel_name: '',
+            Room_name: '',
             DateStart: '',
             DateEnd: '',
             number: '',
             Loading: false,
-            available: ''
+            available: '',
+            per_price: '',
         }
         this.setState(state)
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { IdRoom, DateStart, DateEnd, number, Hotel_name } = this.state
+        const { IdRoom, DateStart, DateEnd, number, Room_name,price } = this.state
+
+       
+        const { props, state } = this;
+        const { firebase } = props;
+        var diff = new DateDiff(new Date(DateEnd), new Date(DateStart));
+        const price_all=this.calculate(diff.days())
 
         const data = {
-            idBooking: new Date(),
+            Date: new Date().toLocaleDateString(),
             IdRoom: IdRoom,
-            DateStart: DateStart,
-            Hotel_name: Hotel_name,
-            DateEnd: DateEnd,
+            Hotel_name : this.props.hotel_name,
+            DateStart: new Date(DateStart).toLocaleDateString(),
+            Room_name: Room_name,
+            DateEnd: new Date(DateEnd).toLocaleDateString(),
             number: number,
+            price:price_all
         }
 
-
-        this.props.BookingActions({data })
+        this.props.BookingActions(data, firebase)
 
         this.clearState()
         this.props.close()
+        // setTimeout(function() {
+        //   }, 0);
+    }
+
+    calculate = (day) => {
+        return (
+            (parseInt(this.state.per_price) * parseInt(this.state.number)) * parseInt(day)
+        )
     }
 
 
 
 
     render() {
-        const { Hotel_name, available, Loading } = this.state
+        const { Room_name, available } = this.state
         // if(Loading){
         return (
             <React.Fragment  >
 
-                <h3>{Hotel_name}</h3>
+                <h3>{Room_name}</h3>
                 <hr className="margin2" />
                 <Form
                     ref="form"
@@ -163,13 +180,21 @@ class BodyBooking extends Component {
     // }
 
 }
+const mapStateToProps = state => ({
+    authError: state.auth.authError,
+    auth: state.firebase.auth,
+});
 
-const mapDispatchToProps = (dispatch)=>{
+
+const mapDispatchToProps = (dispatch) => {
     return {
-        BookingActions:(booking)=> dispatch(BookingActions(booking))
+        BookingActions: (booking) => dispatch(BookingActions(booking))
     }
 }
 
 
 
-export default connect(null,mapDispatchToProps)(BodyBooking)
+export default compose(
+    firebaseConnect(),
+    connect(mapStateToProps, mapDispatchToProps),
+)(BodyBooking);

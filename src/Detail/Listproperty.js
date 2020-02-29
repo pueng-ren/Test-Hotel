@@ -3,40 +3,12 @@ import { Grid } from 'semantic-ui-react'
 
 
 class Listproperty extends Component {
-    // state=[
-    //     NameProperty = [
-    //         {
-    //             name : 'Free High Speed Internet (WiFi)',
-    //             icon : '',
-    //             status : '0'
-    //         },
-    //         {
-    //             name : 'Fitness Center with Gym / Workout Room',
-    //             icon : '',
-    //             status : '0'
-    //         },
-    //         {
-    //             name : 'Pool',
-    //             icon : '',
-    //             status : '0'
-    //         },
-    //         {
-    //             name : 'Rooftop terrace',
-    //             icon : '',
-    //             status : '0'
-    //         },
-    //         {
-    //             name : 'Meeting rooms',
-    //             icon : '',
-    //             status : '0'
-    //         }
-    //     ]
-    // ]
 
     render() {
-        
-        const detail=this.props.item
-        
+
+        const detail = this.props.item
+        console.log(detail)
+
 
 
 
@@ -46,18 +18,15 @@ class Listproperty extends Component {
                     <Grid.Row>
                         <ul>
                             <Grid.Column>
-                                {/* {detail.map((item, i) => { */}
-                                    {/* return ( */}
-                                        <li >{detail.Fitness}</li>
-                                    {/* )
-                                }
-                                )} */}
+                                {detail.map((item, i) => {
+                                    {
+                                        return (
+                                            <li key={i}>{item}</li>
+                                        )
+                                    }
+                                })}
                             </Grid.Column>
-
-
                         </ul>
-
-
                     </Grid.Row>
                 </Grid>
             </React.Fragment>

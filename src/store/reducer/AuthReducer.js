@@ -32,7 +32,7 @@ const AuthReducer = (state = initState, action) => {
             console.log('SIGNUP_ERROR');
             return {
                 ...state,
-                authError: action.err.message
+                authError: 'SIGNUP_ERROR',
             };
         default:
             return state;

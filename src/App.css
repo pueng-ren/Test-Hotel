@@ -2,7 +2,7 @@
 .page-caption { padding-top: 170px; padding-bottom: 174px; }
 .page-title { font-size: 46px; line-height: 1; color: #fff; font-weight: 600; text-align: center; }
 
-.body { padding-top: 70px; }
+.body { padding-top: 70px; margin-bottom: 5%;}
 
 .margin2{
     margin: 5%;
@@ -19,3 +19,13 @@
     background-Color: #F2F2F2;
     width: 100%;
 }
+
+
+.footer {
+    flex-shrink: 0;
+    text-align: center;
+    background-color: #F2F2F2;
+    color: #FFFFFF;
+    height: 30px;
+  }
+  

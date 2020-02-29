@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Table, Button } from 'semantic-ui-react'
-import Listproperty from './Listproperty'
 import BookingRoom from './BookingRoom'
 import Login from '../Login/Login'
-
+import Listproperty from './Listproperty'
 import { connect } from 'react-redux'
 
 class Room extends Component {
@@ -31,7 +30,7 @@ class Room extends Component {
                         <Table.Cell>
                             {item.name}
                         </Table.Cell>
-                        <Table.Cell ><Listproperty item={item.property} /></Table.Cell>
+                        <Table.Cell ><Listproperty item={item.detail}/></Table.Cell>
                         <Table.Cell>
                             {item.sizeRoom}
                         </Table.Cell>
@@ -39,16 +38,25 @@ class Room extends Component {
                             {item.available}
                         </Table.Cell>
                         <Table.Cell textAlign='right'>
-                            {item.price}
+                            ${item.price}
                         </Table.Cell>
                         <Table.Cell>
-                            <Button  onClick={this.handleItemClick} primary>BOOKING</Button>
+                       { item.available >0 ? <Button  onClick={this.handleItemClick} primary>BOOKING</Button> : <Button  onClick={this.handleItemClick} primary disabled>BOOKING</Button> }
+                            
                             
                         </Table.Cell>
                     </Table.Row>
                     {
                         auth.uid? 
-                        <BookingRoom setModal={this.state} close={this.close} key={item.id} id_hotel={item.id} Hotel={item.name} available={item.available}/>
+                        <BookingRoom 
+                            setModal={this.state} 
+                            close={this.close} 
+                            key={item.id} 
+                            id_hotel={item.id} 
+                            Hotel={item.name} 
+                            price={item.price}
+                            available={item.available}
+                            hotel_name={this.props.hotel}/>
                         :<Login setModal={this.state} close={this.close} key={item.id}/>
                         
                     }

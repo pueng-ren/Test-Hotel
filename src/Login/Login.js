@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { SingIn } from '../store/action/AuthAction'
 import { firebaseConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { Button, Modal } from 'semantic-ui-react'
 
 class Login extends Component {
 
@@ -77,7 +76,10 @@ class Login extends Component {
                
             </React.Fragment>
         )
+      
     }
+   
+    
 
 }
 
@@ -89,7 +91,6 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     SingIn: credentials => dispatch(SingIn(credentials)),
 });
-
 
 export default compose(
     firebaseConnect(),

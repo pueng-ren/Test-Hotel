@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Menu} from 'semantic-ui-react'
-import { NavLink } from 'react-router-dom';
-import Login from '../Login/Login'
+
 class NavBar extends Component {
 
     render() {
