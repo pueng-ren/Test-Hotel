@@ -15,7 +15,7 @@ class ListBooking extends Component {
                 <Table.Row>
                     <Table.Cell>
                         <Header as='h2' textAlign='center'>
-                           {/* {this.props.num} */}
+                           {this.props.num}
                         </Header>
                     </Table.Cell>
                     <Table.Cell singleLine>{booking.idBooking}</Table.Cell>
@@ -31,7 +31,6 @@ class ListBooking extends Component {
                     </Table.Cell>
                     <Table.Cell>
                     {booking.number}-{booking.DateEnd}
-
                     </Table.Cell>
                     <Table.Cell>
 

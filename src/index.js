@@ -3,17 +3,37 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {createStore,applyMiddleware} from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux';
 import { BrowserRouter } from 'react-router-dom'
 import RootReducer from './store/reducer/RootReducer'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
+import { createFirestoreInstance, reduxFirestore, getFirestore } from 'redux-firestore';
+import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
+import  firebase from './config/fbConfig'
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store=createStore(RootReducer,applyMiddleware(thunk))
+// Create config for rrfProps object. We need this to pass it in the ReactReduxFirebaseProvider component
+const rrfConfig = {
+  useFirestoreForProfile: true, // Firestore for Profile instead of Realtime DB
+  userProfile: 'users',
+  attachAuthIsReady: true,
+};
 
 
-// import bootstrap set
 
+const store = createStore(RootReducer,
+    composeEnhancers(
+      applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+      reduxFirestore(firebase), // still need this line to get access to firestore via getFirestore function (in projectActions, for example)
+    ));
+  
+  const rrfProps = {
+    firebase,
+    config: rrfConfig,
+    dispatch: store.dispatch,
+    createFirestoreInstance, // Create firestore instead of craete it in fbConfig.js
+  };
 
 const styleLink = document.createElement("link");
 styleLink.rel = "stylesheet";
@@ -21,15 +41,17 @@ styleLink.href = "https://cdn.jsdelivr.net/npm/semantic-ui/dist/semantic.min.css
 document.head.appendChild(styleLink);
 
 
-const AppWithRouter = () => (
+ReactDOM.render(
     <Provider store={store}>
-    <BrowserRouter>
-        <App/>
-    </BrowserRouter>
-    </Provider>
-)
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        <App />
+      </ReactReduxFirebaseProvider>
+    </Provider>,
+    document.getElementById('root'),
+  );
 
-ReactDOM.render(<AppWithRouter/>, document.getElementById('root'));
+console.log('store', store);
+console.log('state', store.getState());
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

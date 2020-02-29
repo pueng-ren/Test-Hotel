@@ -16,7 +16,7 @@ class Booking extends Component {
     
 
         return (
-
+            // console.log(comments)
             <React.Fragment>
                 <Head />
                 <Container>
@@ -53,7 +53,8 @@ class Booking extends Component {
 
 const mapStateToProps = state => {
     return {
-        comments: state.booking.data
+        comments: state.booking
+        
     }
 }
 

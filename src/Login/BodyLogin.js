@@ -8,32 +8,36 @@ class Login extends Component {
 
 
 
+
     render() {
-        let {handleFormChange,Password,Username,close} = this.props
+        let {handleFormChange,handleSubmit,password,email,close} = this.props
 
         return (
             <React.Fragment  >
 
-                <Form style={{ padding: '2%' }}>
+                <Form style={{ padding: '2%' }}
+                onSubmit={handleSubmit}
+                >
+                    {/* {console.log(Username+" "+Password)} */}
                     <Input
                         type="text"
-                        label="Username"
-                        name="Username"
+                        label="email"
+                        name="email"
                         onChange={handleFormChange}
-                        value={Username}
+                        value={email}
                         validators={['required']}
                         errorMessages={['this field is required']}
-                        placeholder='Username'
+                        placeholder='email'
                     />
                     <Input
                         type="text"
-                        label="Password"
-                        name="Password"
+                        label="password"
+                        name="password"
                         onChange={handleFormChange}
-                        value={Password}
+                        value={password}
                         validators={['required']}
                         errorMessages={['this field is required']}
-                        placeholder='Password'
+                        placeholder='password'
                     />
                     <Button type='submit'>Submit</Button>
                     <p>Don't have account ? <Link to='/Register' onClick={close}>Create an account</Link></p>

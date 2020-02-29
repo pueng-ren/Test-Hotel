@@ -1,6 +1,11 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/auth'
+const app = require('@firebase/app');
+require('@firebase/auth');
+require('@firebase/firestore');
+
+const firebase = app.firebase
+
+
+
 var firebaseConfig = {
     apiKey: "AIzaSyAu2RTm5j8kfeNSD8WlnndhIFE06qPoH0I",
     authDomain: "hotel-9274b.firebaseapp.com",
@@ -13,6 +18,6 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.firestore.setting({timestampsInsnapshots : true})
-
-  export default firebase;
+  // firebase.firestore(); // We don't need this anymore because we create firestore in index.js
+  
+  export default firebase ;

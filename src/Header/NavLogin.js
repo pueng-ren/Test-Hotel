@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import { Menu} from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom';
-import Login from '../Login/Login'
-class NavBar extends Component {
+import { compose } from 'redux';
+import { firebaseConnect } from 'react-redux-firebase';
+import { connect } from 'react-redux';
+import {SignOut} from '../store/action/AuthAction'
 
+class NavLogin extends Component {
+    constructor(props){
+        super(props)
+    }
+   
     render() {
         const { activeItem } = this.props.value
+
+        const handleSignOut = () => {
+            const { firebase } = this.props;
+            this.props.SignOut(firebase);
+          };
 
         return (
 
@@ -21,9 +33,9 @@ class NavBar extends Component {
                         
                         <Menu.Menu position='right'>
                             <Menu.Item
-                                name='LOGIN'
-                                active={activeItem === 'LOGIN'}
-                                onClick={this.props.handleItemClick}
+                                name='LOGOUT'
+                                active={activeItem === 'LOGOUT'}
+                                onClick={handleSignOut}
                             />
                         </Menu.Menu>
 
@@ -31,5 +43,11 @@ class NavBar extends Component {
         )
     }
 }
-
-export default NavBar
+const mapDispatchToProps = dispatch => ({
+    SignOut: firebase => dispatch(SignOut(firebase)),
+  });
+  
+export default compose(
+    firebaseConnect(),
+    connect(null, mapDispatchToProps),
+  )(NavLogin);
