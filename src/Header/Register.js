@@ -48,7 +48,7 @@ class Register extends Component {
         const {auth}=this.props
         if(auth.uid)
         {
-            return <Redirect to='/home'/>
+            return <Redirect to='/'/>
         }
 
         const checkRegis = () => {

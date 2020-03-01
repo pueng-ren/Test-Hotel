@@ -30,7 +30,7 @@ class NavBar extends Component {
                     <Menu secondary   >
                         <Menu.Item
                             as={NavLink}
-                            to="/home"
+                            to="/"
                             name='HOME'
                             active={activeItem === 'HOME'}
                             onClick={this.handleItemClick}

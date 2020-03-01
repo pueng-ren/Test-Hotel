@@ -72,7 +72,7 @@ class DetailHotel extends Component {
                                 <h2>Contact</h2>
                                 <p>Address : <span>{data.address}</span></p>
                                 <p>Tel :<span>{data.contact}</span></p>
-                                <p>Website page : <Link to='{data.websize}'>Click HERE</Link> </p>
+                                <p>Website page : <Link to='../${data.websize}'>Click HERE</Link> </p>
                                 <div  style={{height:'50px'}}> 
                                    
                                     <SimpleMap lat={latiture} lon={lontiture} />

@@ -11,7 +11,7 @@ const Booking =(props)=> {
        console.log(props.booking)
 
         if(!auth.uid){
-          return <Redirect to='/home'/>
+          return <Redirect to='/'/>
         }
         // const authorId = getState().firebase.auth.uid;
 

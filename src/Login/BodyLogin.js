@@ -54,7 +54,7 @@ const BodyLogin=(props)=>{
                     <Button type='submit'>Submit</Button>
                    
                 </Form>
-                <p>Don't have account ? <Link to='./Register'  onClick={onClose.bind()}>Create an account</Link></p>
+                <p>Don't have account ? <Link to='../Register'  onClick={onClose.bind()}>Create an account</Link></p>
             </React.Fragment>
         )
     
